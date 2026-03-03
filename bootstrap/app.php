@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // API middleware stack
         $middleware->api(prepend: [
+            \App\Http\Middleware\ForceCors::class,
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
                 \App\Http\Middleware\AddRequestId::class,
                 \App\Http\Middleware\LogContext::class,
