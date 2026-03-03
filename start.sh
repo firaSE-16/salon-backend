@@ -10,8 +10,8 @@ mkdir -p bootstrap/cache \
   storage/framework/views \
   storage/logs
 
-# Best-effort permissions (Railway user varies by runtime)
-chmod -R ug+rwX storage bootstrap/cache || true
+# Ensure very permissive perms for container runtime user
+chmod -R 777 storage bootstrap/cache || true
 
 # Start PHP built-in server with Laravel front controller as router script.
 # Without the router script, paths like /api/... won't reach Laravel and will 404.
