@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Enable CORS handling (required for Vercel frontend -> API calls)
+        $middleware->append(\Illuminate\Http\Middleware\HandleCors::class);
+
         // API middleware stack
         $middleware->api(prepend: [
             \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
